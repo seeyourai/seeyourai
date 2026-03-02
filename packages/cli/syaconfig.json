@@ -1,0 +1,14 @@
+{
+	"autoCollect": false,
+	"tracingEnabled": true,
+	"apiBaseUrl": "http://localhost:3001",
+	"ignorePatterns": ["node_modules", ".git", "dist", "build"],
+	"includePatterns": ["**/*.md", "**/*.ts", "**/*.js", "**/*.json"],
+	"excludedDirectories": ["node_modules", ".git", "dist", "build", ".vscode"],
+	"mcp": {
+		"enabled": true,
+		"deepScan": true,
+		"pingTimeoutMs": 5000,
+		"ignoreServers": []
+	}
+}

@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+.out/
+.next/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Testing
+coverage/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Astro
+.astro/
+
+# Turbo
+.turbo/
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# Temporary files
+*.backup
+*.tmp
+*.temp

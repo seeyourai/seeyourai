@@ -1,0 +1,84 @@
+---
+title: seeyourai
+description: Know exactly what your AI agent context costs.
+template: splash
+hero:
+  tagline: Know exactly what your AI agent context costs — per request, per model. Zero setup.
+  actions:
+    - text: GitHub
+      link: https://github.com/seeyourai/seeyourai
+      icon: external
+      variant: primary
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## The Problem
+
+Every time an AI agent processes a prompt, it loads your context files into the context window — `CLAUDE.md`, linked docs, MCP tool definitions. You pay for these tokens **on every single request**, before the agent reads a line of your code.
+
+This is your **context tax**. And most developers have no idea what it costs.
+
+## The Solution
+
+```bash
+npx seeyourai
+```
+
+One command. Zero config. Instant answers.
+
+<CardGrid stagger>
+	<Card title="Context File Graph" icon="document">
+		Maps every file auto-loaded from your CLAUDE.md and AGENTS.md, recursively following links to show the full token footprint.
+	</Card>
+	<Card title="MCP Server Overhead" icon="puzzle">
+		Scans all configured MCP servers across Claude Code, Cursor, Windsurf, Codex, and more — showing token cost per server.
+	</Card>
+	<Card title="Cost Per Request" icon="magnifier">
+		Shows exact cost across 7 models: Opus, Sonnet, GPT-5, Gemini, and more. Updated pricing from LiteLLM.
+	</Card>
+	<Card title="Session Projections" icon="rocket">
+		Extrapolates per-request cost to real sessions (10, 30, 100 requests) so you see the actual dollar impact.
+	</Card>
+</CardGrid>
+
+## Quick Start
+
+```bash
+# Run instantly with npx
+npx seeyourai
+
+# Or install globally
+npm install -g seeyourai
+```
+
+`sya` is available as a short alias: `npx sya`
+
+Works on any project with `CLAUDE.md`, `AGENTS.md`, or MCP servers configured. No accounts, no API keys, no setup.
+
+## Usage
+
+<CardGrid>
+  <Card title="seeyourai" icon="rocket">
+    Scan your project and show context costs. Just run it — zero config required.
+  </Card>
+  <Card title="seeyourai context --json" icon="document">
+    Machine-readable JSON output for CI pipelines. Track context cost over time.
+  </Card>
+  <Card title="seeyourai context --full" icon="setting">
+    Include dynamic session analysis to find unused MCP servers and dead context files.
+  </Card>
+  <Card title="seeyourai --update-baseline" icon="magnifier">
+    Generate a baseline file to commit and track context cost changes in CI.
+  </Card>
+</CardGrid>
+
+## What Gets Scanned
+
+| Source | What seeyourai Finds |
+|--------|-----------------|
+| `CLAUDE.md` / `AGENTS.md` | Structure issues, broken links, missing sections |
+| Linked files (recursive) | Token count for every auto-loaded file |
+| `.claude/` memory dir | Claude Code memory files and their size |
+| MCP servers (12+ tools) | Claude Code, Cursor, Windsurf, Codex, VS Code, Kiro, Amazon Q, Goose |
+| Pricing (bundled) | 7 models with up-to-date per-token costs |

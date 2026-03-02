@@ -1,0 +1,35 @@
+{
+	"name": "sya",
+	"version": "0.0.1",
+	"description": "Short alias for seeyourai — See Your AI",
+	"license": "Apache-2.0",
+	"dependencies": {
+		"seeyourai": "0.0.1"
+	},
+	"bin": {
+		"sya": "./node_modules/seeyourai/dist/cli.js"
+	},
+	"keywords": [
+		"sya",
+		"seeyourai",
+		"see-your-ai",
+		"ai",
+		"agents",
+		"context",
+		"observability",
+		"tokens"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/seeyourai/seeyourai.git"
+	},
+	"author": "See Your AI <contact@seeyour.ai>",
+	"homepage": "https://sya.dev",
+	"bugs": {
+		"url": "https://github.com/seeyourai/seeyourai/issues"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org"
+	}
+}
