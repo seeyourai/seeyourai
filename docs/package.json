@@ -1,0 +1,20 @@
+{
+	"name": "@seeya/oss-docs",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev --port 4323",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"typecheck": "astro check",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/starlight": "^0.37.6",
+		"@tailwindcss/vite": "^4.2.1",
+		"astro": "^5.17.3",
+		"sharp": "^0.34.5",
+		"tailwindcss": "^4.2.1"
+	}
+}

@@ -1,0 +1,85 @@
+{
+	"name": "seeyourai",
+	"version": "0.0.1",
+	"description": "See Your AI",
+	"license": "Apache-2.0",
+	"type": "module",
+	"bin": {
+		"sya": "./dist/cli.js",
+		"seeyourai": "./dist/cli.js"
+	},
+	"main": "./dist/cli.js",
+	"exports": {
+		".": {
+			"import": "./dist/cli.js",
+			"types": "./dist/cli.d.ts"
+		},
+		"./program": {
+			"import": "./dist/program.js",
+			"types": "./dist/program.d.ts"
+		},
+		"./config": {
+			"import": "./dist/config.js",
+			"types": "./dist/config.d.ts"
+		}
+	},
+	"files": [
+		"dist",
+		"LICENSE",
+		"README.md"
+	],
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"keywords": [
+		"ai",
+		"agents",
+		"context",
+		"observability",
+		"opentelemetry",
+		"llm",
+		"otel",
+		"tokens",
+		"seeyourai",
+		"see-your-ai"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/seeyourai/seeyourai.git"
+	},
+	"author": "See Your AI <contact@seeyour.ai>",
+	"homepage": "https://sya.dev",
+	"bugs": {
+		"url": "https://github.com/seeyourai/seeyourai/issues"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org"
+	},
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsup --watch",
+		"prepublishOnly": "pnpm run build",
+		"typecheck": "tsc --noEmit",
+		"test": "vitest run"
+	},
+	"dependencies": {
+		"@inquirer/select": "^5.1.0",
+		"chalk": "^5.6.2",
+		"commander": "^14.0.3",
+		"gray-matter": "^4.0.3",
+		"js-yaml": "^4.1.1",
+		"zod": "4.3.6"
+	},
+	"devDependencies": {
+		"@seeya/core": "workspace:*",
+		"@seeya/eval-runner": "workspace:*",
+		"@seeya/lint-rules": "workspace:*",
+		"@seeya/shared-types": "workspace:*",
+		"@types/js-yaml": "^4.0.9",
+		"@types/node": "^25.3.0",
+		"tsup": "^8.5.1",
+		"typescript": "^5.9.3",
+		"vitest": "^4.0.18"
+	}
+}
