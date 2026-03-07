@@ -8,10 +8,10 @@ export default defineConfig({
 	server: {
 		allowedHosts: true,
 	},
-	site: "https://sya.dev",
+	site: "https://docs.seeyour.ai",
 	integrations: [
 		starlight({
-			title: "seeyourai",
+			title: "See Your AI",
 			customCss: ["./src/styles/global.css"],
 			social: [{ icon: "github", label: "GitHub", href: "https://github.com/seeyourai/seeyourai" }],
 			sidebar: [{ label: "Home", slug: "index" }],

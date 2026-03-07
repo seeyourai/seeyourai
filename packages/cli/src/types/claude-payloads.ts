@@ -1,9 +1,9 @@
 /**
  * Local type definitions for Claude Code specific payloads
- * These mirror the types from @seeya/otel-collector to avoid workspace dependency issues
+ * These mirror the types from @seeyourai/otel-collector to avoid workspace dependency issues
  */
 
-import type { ToolCall } from "@seeya/shared-types";
+import type { ToolCall } from "@seeyourai/shared-types";
 
 /**
  * Claude Code specific thought payload

@@ -1,5 +1,5 @@
 ---
-title: seeyourai
+title: See Your AI
 description: Know exactly what your AI agent context costs.
 template: splash
 hero:
@@ -27,12 +27,12 @@ npx seeyourai
 
 One command. Zero config. Instant answers.
 
-<CardGrid stagger>
+<CardGrid>
 	<Card title="Context File Graph" icon="document">
 		Maps every file auto-loaded from your CLAUDE.md and AGENTS.md, recursively following links to show the full token footprint.
 	</Card>
 	<Card title="MCP Server Overhead" icon="puzzle">
-		Scans all configured MCP servers across Claude Code, Cursor, Windsurf, Codex, and more — showing token cost per server.
+		Scans all configured MCP servers across Claude Code, Cursor, Windsurf, and more — showing token cost per server.
 	</Card>
 	<Card title="Cost Per Request" icon="magnifier">
 		Shows exact cost across 7 models: Opus, Sonnet, GPT-5, Gemini, and more. Updated pricing from LiteLLM.
@@ -65,11 +65,11 @@ Works on any project with `CLAUDE.md`, `AGENTS.md`, or MCP servers configured. N
   <Card title="seeyourai context --json" icon="document">
     Machine-readable JSON output for CI pipelines. Track context cost over time.
   </Card>
-  <Card title="seeyourai context --full" icon="setting">
-    Include dynamic session analysis to find unused MCP servers and dead context files.
+  <Card title="seeyourai mcp" icon="setting">
+    Deep-dive into your MCP tool surface with per-server token breakdowns.
   </Card>
-  <Card title="seeyourai --update-baseline" icon="magnifier">
-    Generate a baseline file to commit and track context cost changes in CI.
+  <Card title="seeyourai eval run" icon="magnifier">
+    Define and run quality assertions for your agent context files.
   </Card>
 </CardGrid>
 

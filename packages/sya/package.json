@@ -3,11 +3,19 @@
 	"version": "0.0.1",
 	"description": "Short alias for seeyourai — See Your AI",
 	"license": "Apache-2.0",
+	"type": "module",
 	"dependencies": {
-		"seeyourai": "0.0.1"
+		"@seeyourai/cli": "workspace:*"
 	},
 	"bin": {
-		"sya": "./node_modules/seeyourai/dist/cli.js"
+		"sya": "./node_modules/@seeyourai/cli/dist/cli.js"
+	},
+	"files": [
+		"LICENSE",
+		"README.md"
+	],
+	"engines": {
+		"node": ">=18.0.0"
 	},
 	"keywords": [
 		"sya",
@@ -21,10 +29,11 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/seeyourai/seeyourai.git"
+		"url": "https://github.com/seeyourai/seeyourai.git",
+		"directory": "packages/sya"
 	},
 	"author": "See Your AI <contact@seeyour.ai>",
-	"homepage": "https://sya.dev",
+	"homepage": "https://seeyour.ai",
 	"bugs": {
 		"url": "https://github.com/seeyourai/seeyourai/issues"
 	},

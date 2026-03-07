@@ -6,12 +6,13 @@ import {
 	listEvals,
 	loadEvalSuite,
 	runEvalSuite,
-} from "@seeya/eval-runner";
+} from "@seeyourai/eval-runner";
 import chalk from "chalk";
 import type { Command } from "commander";
 
 const EXAMPLE_EVAL = `name: example-eval
 description: "Example eval — verifies the agent creates a file following project patterns"
+eval_type: agent
 prompt: |
   Create a new file called hello.txt with the content "Hello from seeyourai eval!"
 assertions:
@@ -23,7 +24,27 @@ assertions:
     pattern: "Hello"
     description: "File should contain a greeting"
 timeout: 60
-tags: [example]
+tags: [example, agent]
+`;
+
+const STATIC_EVAL = `name: context-quality
+description: "Static eval — checks context file quality without spawning an agent"
+eval_type: static
+assertions:
+  - type: max_context_tokens
+    limit: 10000
+    description: "Total context should be under 10,000 tokens"
+  - type: no_dead_imports
+    description: "All file references in CLAUDE.md should resolve"
+  - type: section_exists
+    heading: "Overview"
+    description: "CLAUDE.md should have an Overview section"
+  - type: no_vague_language
+    description: "CLAUDE.md should not contain vague instructions"
+  - type: max_section_tokens
+    limit: 2000
+    description: "No single section should exceed 2,000 tokens"
+tags: [static, context-quality]
 `;
 
 const EXAMPLE_SUITE_CONFIG = `version: 1
@@ -54,16 +75,22 @@ export function registerEvalCommand(program: Command): void {
 
 			mkdirSync(evalsDir, { recursive: true });
 			writeFileSync(path.join(evalsDir, "example-eval.yaml"), EXAMPLE_EVAL);
+			writeFileSync(path.join(evalsDir, "context-quality.yaml"), STATIC_EVAL);
 
 			if (!existsSync(suiteConfigPath)) {
 				writeFileSync(suiteConfigPath, EXAMPLE_SUITE_CONFIG);
 			}
 
 			console.log(chalk.green("\n  Eval suite initialized!\n"));
-			console.log(`  ${chalk.dim("Created:")} .seeyourai/evals/example-eval.yaml`);
+			console.log(
+				`  ${chalk.dim("Created:")} .seeyourai/evals/example-eval.yaml  ${chalk.cyan("(agent)")}`,
+			);
+			console.log(
+				`  ${chalk.dim("Created:")} .seeyourai/evals/context-quality.yaml  ${chalk.cyan("(static)")}`,
+			);
 			console.log(`  ${chalk.dim("Created:")} .seeyourai/evals.yaml`);
 			console.log(
-				`\n  ${chalk.dim("Next:")} Run ${chalk.bold("sya eval run")} to execute your evals.\n`,
+				`\n  ${chalk.dim("Next:")} Run ${chalk.bold("sya eval run --filter static")} to run static evals (instant, free).\n`,
 			);
 		});
 

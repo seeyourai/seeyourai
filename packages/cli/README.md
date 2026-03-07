@@ -1,4 +1,4 @@
-# seeyourai
+# @seeyourai/cli
 
 **Know exactly what your AI agent context costs — per request, per model.**
 
@@ -21,7 +21,7 @@ That's it. Run it in any project with a `CLAUDE.md`, `AGENTS.md`, or MCP servers
 `seeyourai` scans your project and answers one question: **how much does your context cost per request?**
 
 - **Context file graph** — Maps every file auto-loaded from your CLAUDE.md/AGENTS.md, recursively following links
-- **MCP server overhead** — Scans all configured MCP servers (Claude Code, Cursor, Windsurf, Codex, etc.) and estimates their token cost
+- **MCP server overhead** — Scans all configured MCP servers (Claude Code, Cursor, and more) and estimates their token cost
 - **Cost per request** — Shows exact cost across 7 models (Opus, Sonnet, GPT-5, Gemini, etc.)
 - **Session cost projections** — Extrapolates to real-world sessions (10, 30, 100 requests)
 - **Lint issues** — Validates structure and identifies broken references
@@ -83,17 +83,12 @@ That's it. Run it in any project with a `CLAUDE.md`, `AGENTS.md`, or MCP servers
 seeyourai                          # Analyze context and show per-request costs
 seeyourai context                  # Same as above
 seeyourai context --json           # Machine-readable output for CI
-seeyourai context --full           # Include dynamic session analysis
 ```
 
 | Flag | Description |
 |------|-------------|
 | `--json` | JSON output for CI/scripting |
-| `--full` | Include dynamic session analysis (requires trace data) |
-| `--session <id>` | Analyze a specific session (implies --full) |
-| `--all` | Analyze all stored sessions (implies --full) |
 | `--min-tokens <n>` | Minimum file token size to report (default: 100) |
-| `--update-baseline` | Write results to seeyourai-baseline.yaml for CI |
 
 ## What Gets Scanned
 
@@ -107,7 +102,7 @@ Detects servers configured in:
 - Claude Code (`~/.claude/settings.json`)
 - Claude Desktop
 - Cursor (`~/.cursor/mcp.json`)
-- Windsurf, Codex, VS Code, Kiro, Amazon Q, Goose, and more
+- Windsurf, VS Code, Kiro, Amazon Q, Goose, and more
 - Project-level configs (`.claude/settings.json`, `.cursor/mcp.json`, etc.)
 
 ### Pricing
@@ -118,13 +113,7 @@ Cost calculations use bundled pricing data from [LiteLLM](https://github.com/Ber
 Add to your CI pipeline to track context cost over time:
 
 ```bash
-npx seeyourai --json
-```
-
-Or generate a baseline file to commit:
-
-```bash
-npx seeyourai --update-baseline
+npx seeyourai context --json
 ```
 
 ## Requirements
@@ -134,4 +123,4 @@ npx seeyourai --update-baseline
 
 ## License
 
-MIT
+Apache-2.0
