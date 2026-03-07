@@ -1,8 +1,8 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import select from "@inquirer/select";
-import { costPerRequest as computeCostPerReq, fmtCost, getInputPricing } from "@seeya/core";
-import { analyzeContextFootprint, lintProject } from "@seeya/lint-rules";
+import { costPerRequest as computeCostPerReq, fmtCost, getInputPricing } from "@seeyourai/core";
+import { analyzeContextFootprint, lintProject } from "@seeyourai/lint-rules";
 import chalk from "chalk";
 import { Command } from "commander";
 import { contextCommand } from "./commands/context.js";
@@ -215,9 +215,8 @@ Examples:
   $ sya                      Analyze context and show per-request costs
   $ sya context              Same as above
   $ sya context --json       Machine-readable output for CI
-  $ sya context --full       Include dynamic session analysis (requires trace data)
   $ sya mcp                  Inspect MCP servers and tools
-  $ sya mcp --unused         Find MCP tools that are never invoked
+  $ sya eval init            Scaffold eval suite for context quality checks
 
 Alias:
   'sya' is an alias for 'seeyourai'. Both work identically.
@@ -238,23 +237,12 @@ Alias:
 		.command("context")
 		.description("Show context footprint, token counts, and per-request costs")
 		.option("--json", "Output results as JSON (for CI/scripting)")
-		.option("--full", "Include dynamic session analysis (requires trace data)")
-		.option("-s, --session <id>", "Analyze usage for a specific session by ID (implies --full)")
-		.option("--all", "Analyze usage across all stored sessions (implies --full)")
 		.option("--min-tokens <number>", "Minimum file token size to report (default: 100)")
-		.option("--list", "List available sessions for usage analysis")
-		.option("--update-baseline", "Write current results to seeyourai-baseline.yaml")
 		.action(async (options) => {
 			try {
-				const full = options.full || !!options.session || !!options.all;
 				await contextCommand({
 					json: options.json,
-					session: options.session,
-					all: options.all,
 					minTokens: options.minTokens ? Number(options.minTokens) : undefined,
-					list: options.list,
-					updateBaseline: options.updateBaseline,
-					static: !full,
 				});
 			} catch (error) {
 				console.error(chalk.red(`Error: ${error}`));
@@ -269,8 +257,6 @@ Alias:
 		.option("--json", "Output results as JSON")
 		.option("--live", "Live-ping MCP servers for accurate tool counts")
 		.option("--source <source>", "Filter by source (e.g. claude-code, cursor)")
-		.option("--diff", "Compare current MCP tools against saved baseline")
-		.option("--unused", "Cross-reference with traces to find never-invoked tools")
 		.option("--export <format>", "Export MCP tool surface (format: openapi)")
 		.action(async (options) => {
 			try {
@@ -278,8 +264,6 @@ Alias:
 					json: options.json,
 					live: options.live,
 					source: options.source,
-					diff: options.diff,
-					unused: options.unused,
 					export: options.export,
 				});
 			} catch (error) {

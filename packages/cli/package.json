@@ -1,7 +1,7 @@
 {
-	"name": "seeyourai",
-	"version": "0.0.1",
-	"description": "See Your AI",
+	"name": "@seeyourai/cli",
+	"version": "0.1.0",
+	"description": "See Your AI CLI — observe, debug, and optimize AI agent context",
 	"license": "Apache-2.0",
 	"type": "module",
 	"bin": {
@@ -34,21 +34,24 @@
 	"keywords": [
 		"ai",
 		"agents",
+		"cli",
 		"context",
 		"observability",
 		"opentelemetry",
 		"llm",
 		"otel",
 		"tokens",
+		"sya",
 		"seeyourai",
 		"see-your-ai"
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/seeyourai/seeyourai.git"
+		"url": "https://github.com/seeyourai/seeyourai.git",
+		"directory": "packages/cli"
 	},
 	"author": "See Your AI <contact@seeyour.ai>",
-	"homepage": "https://sya.dev",
+	"homepage": "https://seeyour.ai",
 	"bugs": {
 		"url": "https://github.com/seeyourai/seeyourai/issues"
 	},
@@ -68,15 +71,13 @@
 		"chalk": "^5.6.2",
 		"commander": "^14.0.3",
 		"gray-matter": "^4.0.3",
-		"js-yaml": "^4.1.1",
 		"zod": "4.3.6"
 	},
 	"devDependencies": {
-		"@seeya/core": "workspace:*",
-		"@seeya/eval-runner": "workspace:*",
-		"@seeya/lint-rules": "workspace:*",
-		"@seeya/shared-types": "workspace:*",
-		"@types/js-yaml": "^4.0.9",
+		"@seeyourai/core": "workspace:*",
+		"@seeyourai/eval-runner": "workspace:*",
+		"@seeyourai/lint-rules": "workspace:*",
+		"@seeyourai/shared-types": "workspace:*",
 		"@types/node": "^25.3.0",
 		"tsup": "^8.5.1",
 		"typescript": "^5.9.3",
