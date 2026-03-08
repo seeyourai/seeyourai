@@ -1,17 +1,20 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import select from "@inquirer/select";
-import { costPerRequest as computeCostPerReq, fmtCost, getInputPricing } from "@seeyourai/core";
-import { analyzeContextFootprint, lintProject } from "@seeyourai/lint-rules";
 import chalk from "chalk";
 import { Command } from "commander";
 import { contextCommand } from "./commands/context.js";
-import { registerEvalCommand } from "./commands/eval.js";
 import { mcpCommand } from "./commands/mcp.js";
 import { loadConfig } from "./config.js";
+import { analyzeContextFootprint } from "./internal/context-footprint.js";
+import {
+	costPerRequest as computeCostPerReq,
+	fmtCost,
+	getInputPricing,
+} from "./internal/pricing.js";
+import { lintProject } from "./internal/project-linter.js";
 
 export { contextCommand } from "./commands/context.js";
-export { registerEvalCommand } from "./commands/eval.js";
 export { mcpCommand } from "./commands/mcp.js";
 
 // ─── provider detection ─────────────────────────────────────────────────────
@@ -216,15 +219,11 @@ Examples:
   $ sya context              Same as above
   $ sya context --json       Machine-readable output for CI
   $ sya mcp                  Inspect MCP servers and tools
-  $ sya eval init            Scaffold eval suite for context quality checks
 
 Alias:
   'sya' is an alias for 'seeyourai'. Both work identically.
 `,
 		);
-
-	// ── eval: context engineering evals ─────────────────────────────────
-	registerEvalCommand(program);
 
 	// ── Default action: run context (the core command) ──────────────────
 	program.action(async (_, cmd) => {

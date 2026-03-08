@@ -1,6 +1,7 @@
-import { summarizeJsonSchema } from "@seeyourai/core";
-import { analyzeCapabilities, type CapabilitySummary } from "@seeyourai/lint-rules";
 import chalk from "chalk";
+import { analyzeCapabilities, type CapabilitySummary } from "../internal/capabilities-analyzer.js";
+import { summarizeJsonSchema } from "../internal/mcp-detector.js";
+import { generateOpenAPISpec } from "../internal/openapi-export.js";
 
 interface McpOptions {
 	json?: boolean;
@@ -22,7 +23,6 @@ export async function mcpCommand(options: McpOptions = {}): Promise<CapabilitySu
 
 	// ── --export openapi: generate OpenAPI spec ───────────────────────
 	if (options.export === "openapi") {
-		const { generateOpenAPISpec } = await import("@seeyourai/core");
 		const spec = generateOpenAPISpec(summary);
 		process.stdout.write(`${JSON.stringify(spec, null, 2)}\n`);
 		return summary;

@@ -10,9 +10,6 @@ export default defineConfig({
 	minify: true,
 	target: "es2022",
 	platform: "node",
-	// All internal @seeyourai/* workspace packages are bundled so the published CLI
-	// is self-contained and doesn't require unpublished packages from npm.
-	noExternal: [/^@seeyourai\//],
 	// gray-matter is CJS and doesn't work when bundled into ESM output.
 	// Keep it external and install via npm dependencies.
 	external: ["gray-matter"],
