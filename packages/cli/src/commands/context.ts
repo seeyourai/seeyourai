@@ -1,15 +1,17 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
+import chalk from "chalk";
+import { loadConfig } from "../config.js";
+import { analyzeContextFootprint } from "../lib/context-footprint.js";
+import { LintEngine } from "../lib/lint-engine.js";
+import { summarizeJsonSchema } from "../lib/mcp-detector.js";
 import {
 	costPerRequest as computeCostPerReq,
 	DISPLAY_MODELS,
 	fmtCost,
 	getInputPricing,
-	summarizeJsonSchema,
-} from "@seeyourai/core";
-import { analyzeContextFootprint, LintEngine, lintProject } from "@seeyourai/lint-rules";
-import chalk from "chalk";
-import { loadConfig } from "../config.js";
+} from "../lib/pricing.js";
+import { lintProject } from "../lib/project-linter.js";
 
 interface OptimizeOptions {
 	minTokens?: number;

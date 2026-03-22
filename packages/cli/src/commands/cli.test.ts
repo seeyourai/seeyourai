@@ -19,13 +19,6 @@ describe("CLI program structure", () => {
 		expect(contextCmd?.description()).toContain("context");
 	});
 
-	it("registers the 'eval' command", () => {
-		const program = createProgram();
-		const evalCmd = program.commands.find((cmd) => cmd.name() === "eval");
-		expect(evalCmd).toBeDefined();
-		expect(evalCmd?.description()).toContain("eval");
-	});
-
 	it("registers the 'mcp' command", () => {
 		const program = createProgram();
 		const mcpCmd = program.commands.find((cmd) => cmd.name() === "mcp");
@@ -47,47 +40,6 @@ describe("CLI 'context' command options", () => {
 		const contextCmd = program.commands.find((cmd) => cmd.name() === "context");
 		const options = contextCmd?.options.map((o) => o.long);
 		expect(options).toContain("--min-tokens");
-	});
-});
-
-describe("CLI 'eval' subcommands", () => {
-	it("has 'eval init' subcommand", () => {
-		const program = createProgram();
-		const evalCmd = program.commands.find((cmd) => cmd.name() === "eval");
-		const initCmd = evalCmd?.commands.find((cmd) => cmd.name() === "init");
-		expect(initCmd).toBeDefined();
-		expect(initCmd?.description()).toContain("Scaffold");
-	});
-
-	it("has 'eval list' subcommand", () => {
-		const program = createProgram();
-		const evalCmd = program.commands.find((cmd) => cmd.name() === "eval");
-		const listCmd = evalCmd?.commands.find((cmd) => cmd.name() === "list");
-		expect(listCmd).toBeDefined();
-		expect(listCmd?.description()).toContain("List");
-	});
-
-	it("has 'eval run' subcommand", () => {
-		const program = createProgram();
-		const evalCmd = program.commands.find((cmd) => cmd.name() === "eval");
-		const runCmd = evalCmd?.commands.find((cmd) => cmd.name() === "run");
-		expect(runCmd).toBeDefined();
-	});
-
-	it("eval run has --json option", () => {
-		const program = createProgram();
-		const evalCmd = program.commands.find((cmd) => cmd.name() === "eval");
-		const runCmd = evalCmd?.commands.find((cmd) => cmd.name() === "run");
-		const options = runCmd?.options.map((o) => o.long);
-		expect(options).toContain("--json");
-	});
-
-	it("eval run has --filter option", () => {
-		const program = createProgram();
-		const evalCmd = program.commands.find((cmd) => cmd.name() === "eval");
-		const runCmd = evalCmd?.commands.find((cmd) => cmd.name() === "run");
-		const options = runCmd?.options.map((o) => o.long);
-		expect(options).toContain("--filter");
 	});
 });
 
@@ -120,7 +72,6 @@ describe("CLI help text", () => {
 		const helpInfo = program.helpInformation();
 		expect(helpInfo).toContain("context");
 		expect(helpInfo).toContain("mcp");
-		expect(helpInfo).toContain("eval");
 	});
 
 	it("includes description in help text", () => {
